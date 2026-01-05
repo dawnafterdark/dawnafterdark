@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawn After Dark | Luxury Forest Vibe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-deep: #141d14;
+            --forest-mid: #2d3b2d;
+            --sage-glow: #b7c9ad;
+            --wood-tone: #3d2b1f;
+            --cream-silk: #fdfaf1;
+            --gold-leaf: #c5a36b;
+            --text-muted: #94a684;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--cream-silk);
+            background: var(--forest-deep);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Make content hyperlinks gold by default; nav links override this */
+        a {
+            color: var(--gold-leaf);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--cream-silk);
+            text-decoration: underline;
+        }
+
+        /* audio removed (controls and styles deleted) */
+
+        /* --- BACKGROUND & MIST --- */
+        #main {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(45, 59, 45, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(61, 43, 31, 0.3) 0%, transparent 50%),
+                url('https://www.transparenttextures.com/patterns/dark-matter.png'),
+                linear-gradient(to bottom, #141d14, #0a0f0a);
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 200%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(183, 201, 173, 0.04), transparent);
+            pointer-events: none;
+            animation: mistMove 25s linear infinite;
+        }
+
+        @keyframes mistMove {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0%); }
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(20, 29, 20, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(183, 201, 173, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--gold-leaf);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cream-silk);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.6;
+            transition: 0.4s;
+        }
+
+        .nav-links a:hover { opacity: 1; color: var(--gold-leaf); }
+
+        /* --- CONTENT & CARDS --- */
+        section {
+            padding: 2rem;
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            scroll-snap-align: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(to bottom, var(--cream-silk), var(--sage-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--gold-leaf);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .service-card, .social-card, .about-content, .contact-form, .gifts-content {
+            background-color: rgba(45, 59, 45, 0.4);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%233d2b1f' stroke-width='0.5' stroke-opacity='0.2'%3E%3Cpath d='M0 0c100 50 200 50 300 0s200-50 300 0 200 50 300 0'/%3E%3Cpath d='M0 50c100 50 200 50 300 0s200-50 300 0 200 50 300 0'/%3E%3Cpath d='M0 100c100 50 200 50 300 0s200-50 300 0 200 50 300 0'/%3E%3C/g%3E%3C/svg%3E");
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            border: 1px solid rgba(183, 201, 173, 0.1);
+            padding: 2.5rem;
+            transition: all 0.5s ease;
+        }
+
+        /* --- TYPEWRITER CURSOR --- */
+        .typing-cursor::after {
+            content: "|";
+            color: var(--gold-leaf);
+            animation: blink 0.8s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        #typewriter { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; }
+
+        /* subheader styling removed (reverted to inline markup) */
+
+        /* --- UI ELEMENTS --- */
+        .gallery-carousel { border: 1px solid rgba(183, 201, 173, 0.1); background: rgba(0,0,0,0.4); border-radius: 4px; box-sizing: border-box; padding: 1rem; margin-bottom: 2rem; overflow: hidden; position: relative; }
+        .gallery-track { display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); will-change: transform; flex-wrap: nowrap; }
+        .gallery-item { flex: 0 0 100%; min-width: 100%; display: flex; align-items: center; justify-content: center; height: calc(60vh - 4rem); box-sizing: border-box; overflow: hidden; }
+        .gallery-item img { max-height: 100%; max-width: 100%; width: auto; height: auto; display: block; object-fit: contain; }
+        .carousel-btn { background: var(--forest-mid); border: 1px solid var(--gold-leaf); color: var(--gold-leaf); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .carousel-btn:hover { background: var(--gold-leaf); color: var(--wood-tone); }
+        .btn { background: var(--gold-leaf); color: var(--wood-tone); border-radius: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; padding: 1.2rem; border: none; cursor: pointer; transition: 0.4s; }
+        .btn:hover { background: var(--cream-silk); transform: scale(1.02); }
+
+        .services-grid, .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start; }
+
+        /* Ensure cards align to top and stretch equally */
+        .service-card { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; height: 100%; }
+        .service-card ul { margin: 0; padding: 0; }
+        #main::-webkit-scrollbar { height: 4px; }
+        #main::-webkit-scrollbar-track { background: var(--forest-deep); }
+        #main::-webkit-scrollbar-thumb { background: var(--wood-tone); }
+
+        @media (max-width: 768px) { 
+            /* Force vertical scrolling and prevent horizontal pan on mobile */
+            :root { --nav-mobile-height: 72px; }
+            html, body { height: auto; overflow-x: hidden !important; }
+            body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding-top: var(--nav-mobile-height); }
+            nav { height: var(--nav-mobile-height); }
+            /* Switch to vertical stacked layout on mobile */
+            #main { flex-direction: column; height: auto; overflow-x: hidden; overflow-y: auto; scroll-snap-type: y mandatory; }
+            section { min-width: 100%; width: 100%; height: auto; min-height: calc(100vh - var(--nav-mobile-height)); scroll-snap-align: start; padding-top: 1.25rem; }
+
+            h1 { font-size: 2.5rem; } 
+            .nav-links { display: none; } 
+            .gallery-item { height: calc(50vh - 3rem); }
+            .gallery-carousel { padding: 0.75rem; }
+            .carousel-btn { width: 40px; height: 40px; }
+            /* Prevent inner elements from forcing horizontal scroll */
+            .gallery-track, .services-grid, .social-grid { max-width: 100%; box-sizing: border-box; }
+            img { max-width: 100%; height: auto; }
+            /* Add breathing room between stacked pages */
+            section { margin-bottom: 1.25rem; }
+
+            /* Center logo and brighten home title on mobile */
+            .nav-container { justify-content: center; }
+            .logo { text-align: center; width: 100%; font-size: 1.6rem; }
+            #home h1 { 
+                color: var(--cream-silk) !important;
+                -webkit-text-fill-color: var(--cream-silk) !important;
+                background: none !important;
+                text-shadow: 0 0 28px rgba(197, 163, 107, 0.9) !important;
+            }
+            /* subheader centering removed (reverted) */
+            /* Ensure FAQ list arrows don't affect wrapping: hanging indent inside arrows */
+            #faq .services-grid li { position: relative; padding-left: 30px; }
+            #faq .services-grid li > span:first-child { position: absolute; left: 0; top: 0.15rem; margin-right: 0 !important; display: inline-block; width: 20px; text-align: left; }
+            #faq .services-grid li { word-break: break-word; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- audio removed -->
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Dawn After Dark</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#gallery">Portfolio</a></li>
+                <li><a href="#rates">Rates</a></li>
+                <li><a href="#social">Social</a></li>
+                <li><a href="#faq">Essentials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="main">
+        <section id="home" style="background: radial-gradient(circle at center, rgba(61, 43, 31, 0.2) 0%, transparent 70%);">
+    <div class="container" style="text-align: center;">
+        <h1 style="text-shadow: 0 0 20px rgba(197, 163, 107, 0.3); font-style: italic;">Come a Little Closer</h1>
+        <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--gold-leaf); font-size: 0.8rem; opacity: 0.8; margin-top: 10px;">
+            Soft whispers and electric tension
+        </p>
+        <p style="text-transform: uppercase; letter-spacing: 5px; color: var(--gold-leaf); font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">
+            Only after the sun goes down
+        </p>
+    </div>
+</section>
+        
+
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <p id="typewriter" class="typing-cursor"></p>
+                    <p style="margin-top:2rem; opacity:0; transition: opacity 2s;" id="secondaryText">
+                        I’m not here to rush; I’m here to notice the little things and make sure you feel every bit as wanted as you are. Imagine equal parts honey and heat... unhurried affection paired with the kind of gaze that keeps you centered. If you like to be comfortably indulged and elegantly tempted, stay a while. Let’s see how long we can make the rest of the world wait.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="container">
+                <h2>Portfolio</h2>
+                <div class="gallery-carousel" style="position: relative;">
+                    <button class="carousel-btn prev" style="position:absolute; left:20px; top:50%; transform:translateY(-50%); z-index:10;">‹</button>
+                    <button class="carousel-btn next" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); z-index:10;">›</button>
+                    <div class="gallery-track" id="galleryTrack" style="display:flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);">
+                            <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo01.jpg" alt="Car 1">
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo02.jpg" alt="Car 2">
+                            </div>
+                                                        <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo03.jpg" alt="Car 2">
+                            </div>
+                                                        <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo04.jpg" alt="Car 2">
+                            </div>
+                                                        <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo05.jpg" alt="Car 2">
+                            </div>
+                                                        <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo06.jpg" alt="Car 2">
+                            </div>
+                                                        <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo07.jpg" alt="Car 2">
+                            </div>
+                                                        <div class="gallery-item">
+                                <img src="https://dusktilldawnonline.s3.us-east-1.amazonaws.com/photo08.jpg" alt="Car 2">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section id="rates">
+    <div class="container">
+        <h2>Indulgences</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>The First Light</h3>
+                <div class="price">A$400</div>
+                <p style="font-size: 0.8rem; letter-spacing: 1px; color: var(--gold-leaf); text-transform: uppercase;">1 Hour GFE</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">A brief, sweet encounter to ignite the chemistry.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Into the Shadows</h3>
+                <div class="price">A$800</div>
+                <p style="font-size: 0.8rem; letter-spacing: 1px; color: var(--gold-leaf); text-transform: uppercase;">2 Hour GFE</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Slowing down the world for a deeper, more unhurried connection.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>The Midnight Escape</h3>
+                <div class="price">A$1,200</div>
+                <p style="font-size: 0.8rem; letter-spacing: 1px; color: var(--gold-leaf); text-transform: uppercase;">3 Hour GFE</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Total immersion. An evening where time completely stands still.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>Moonlight & Movies</h3>
+                <div class="price">A$1,300</div>
+                <p style="font-size: 0.8rem; letter-spacing: 1px; color: var(--gold-leaf); text-transform: uppercase;">3 Hours</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Cozy up for a movie and a glass of wine before we shift from sweet to electric.</p>
+            </div>
+
+            <div class="service-card">
+                <h3>The Twilight Social</h3>
+                <div class="price">A$1,900</div>
+                <p style="font-size: 0.8rem; letter-spacing: 1px; color: var(--gold-leaf); text-transform: uppercase;">2 Hours + Dinner</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">An elegant evening out. Take me to dinner before we disappear together.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 3rem; font-size: 0.8rem; color: var(--text-muted); letter-spacing: 1px;">
+            → ALL SERVICES ARE PROTECTED • NO EXTRAS INCLUDED UNLESS DISCUSSED
+        </p>
+    </div>
+</section>
+
+        <section id="social">
+    <div class="container">
+        <h2>Follow the Glow</h2>
+        <div class="social-grid">
+            <div class="social-card">
+                <div class="social-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">📷</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-style: italic;">Instagram</h3>
+                <a href="https://instagram.com/inbedwithdawn" target="_blank" style="letter-spacing: 1px; font-size: 0.9rem;">@inbedwithdawn</a>
+            </div>
+
+            <div class="social-card">
+                <div class="social-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">🦋</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-style: italic;">Bluesky</h3>
+                <a href="https://bsky.app/profile/inbedwithdawn.bsky.social" target="_blank" style="letter-spacing: 1px; font-size: 0.9rem;">@inbedwithdawn.bsky.social</a>
+            </div>
+
+            <div class="social-card">
+                <div class="social-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">🕊️</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-style: italic;">Twitter</h3>
+                <a href="https://x.com/inbedwithdawn" target="_blank" style="letter-spacing: 1px; font-size: 0.9rem;">@inbedwithdawn</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="faq">
+    <div class="container">
+        <h2>The Essentials</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 style="color: var(--gold-leaf); margin-bottom: 1.5rem; font-style: italic;">The Experience</h3>
+                <ul style="list-style: none; text-align: left; font-size: 0.95rem; line-height: 2.2;">
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Authentic, unhurried GFE</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Soft conversation & playful flirting</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Intuitive, protected intimacy</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Total discretion & privacy guaranteed</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Always fresh, clean, & well-groomed</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Mornington-based, outcall only</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3 style="color: var(--gold-leaf); margin-bottom: 1.5rem; font-style: italic;">House Manners</h3>
+                <ul style="list-style: none; text-align: left; font-size: 0.95rem; line-height: 2.2;">
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> All gentlemen must pass a visual health check prior to showering, before the booking commences. </li>    
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Minimum 1-hour booking</li>                 
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Fresh shower upon my arrival</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Clean private room for the booking</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Travel fare covered by client</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Respectful behaviour</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <h2>Connect</h2>
+        <div class="services-grid">
+            
+            <div class="service-card" style="text-align: left;">
+                <h3 style="color: var(--gold-leaf); margin-bottom: 1.5rem; font-style: italic;">How to Book</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 1.5rem; opacity: 0.8;">
+                    To ensure a seamless escape, please include the following in your initial text:
+                </p>
+                <ul style="list-style: none; font-size: 0.95rem; line-height: 2.2;">
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Your Name & Age</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Precise Booking Location</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Preferred Duration</li>
+                    <li><span style="color: var(--gold-leaf); margin-right: 10px;">→</span> Proposed Start Time</li>
+                </ul>
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(197, 163, 107, 0.1); font-size: 0.85rem; opacity: 0.7;">
+                    <p>Note: Fare always required. 15% deposit required for 3+ hours.</p>
+                </div>
+            </div>
+
+            <div class="about-content" style="margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid rgba(197, 163, 107, 0.2);">
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic;">
+                    "Ready when you are..."
+                </p>
+                
+                <a href="sms:+61401001521?body=Hi%20Dawn,%20my%20name%20is%20[Name],%20age%20[Age].%20I'm%20at%20[Location]%20and%20would%20love%20to%20book%20for%20[Duration]%20starting%20at%20[Time]." class="btn" style="display:inline-block; text-decoration:none; padding: 1.2rem 2.5rem; width: 100%; text-align: center;">
+                    Send SMS
+                </a>
+
+                <p style="margin-top: 1.5rem; font-size: 0.9rem;">
+                    Direct: <a href="tel:+61401001521" style="color: var(--gold-leaf);">0401 001 521</a>
+                </p>
+                
+                <p style="margin-top: 1rem; font-size: 0.7rem; letter-spacing: 2px; opacity: 0.5; text-transform: uppercase;">
+                    SMS Inquiries Only
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        </div>
+    </div>
+</section>
+
+        
+
+
+    <script>
+        const main = document.getElementById('main');
+        const track = document.getElementById('galleryTrack');
+        const items = document.querySelectorAll('.gallery-item');
+        let currentIndex = 0;
+
+        // (audio removed)
+
+        // --- Typewriter Logic ---
+        const bioText = "Sun-kissed skin and a heart that likes to wander. I’m that rare mix of soft, easy conversation and a tension that feels beautifully electric.";
+        let charIndex = 0;
+        const typewriterEl = document.getElementById('typewriter');
+        const secondaryText = document.getElementById('secondaryText');
+
+        function type() {
+            if (charIndex < bioText.length) {
+                typewriterEl.innerHTML += bioText.charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 50);
+            } else {
+                typewriterEl.classList.remove('typing-cursor');
+                secondaryText.style.opacity = "1";
+            }
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && charIndex === 0) {
+                    type();
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(document.getElementById('about'));
+
+        // --- Carousel Logic ---
+        document.querySelector('.next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+        document.querySelector('.prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+
+        // --- Nav Smooth Scroll Logic (horizontal on desktop, vertical on mobile)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (!target) return;
+
+                // detect mobile/vertical layout by checking computed flex-direction
+                const mainStyle = window.getComputedStyle(main);
+                const isVertical = mainStyle.flexDirection === 'column' || window.innerWidth <= 768;
+
+                if (isVertical) {
+                    // scroll vertically within #main
+                    const offset = target.offsetTop;
+                    main.scrollTo({ top: offset, behavior: 'smooth' });
+                } else {
+                    // horizontal scroll on desktop
+                    main.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
